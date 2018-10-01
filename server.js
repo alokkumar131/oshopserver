@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 // API location
-app.use('/api', api);
+app.use('/', api);
 
 //Server start
 app.listen(port,(req,res)=>{
