@@ -1,24 +1,15 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 const path=require('path');
-//Set Port
-const port=process.env.PORT | 3000;
-// API file for interacting with MongoDB
-// const api = require('/server/routes/api');
+const user=require('./routes/user')
 var app=express();
-
-
-// Parsers
+var port=process.env.PORT | 3000;
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
-
-// API location
-// app.use('/', api);
-app.get('/',(req,res)=>{
-    res.send('api works');
+//app.use(express.static(path.join(__dirname,'views')));
+app.use('/user',user);
+// app.use('*',(req,res)=>{
+// 	res,sendFile(path.join(__dirname,'views/index.html'))
+// })
+app.listen(port,()=>{
+	console.log('Server run on port no' +port);
 });
-
-//Server start
-app.listen(port,(req,res)=>{
-    console.log('Server started on port number :'+port)
-})
